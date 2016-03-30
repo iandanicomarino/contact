@@ -34,6 +34,13 @@
 					<th>
 						Number
 					</th>
+					<tbody>
+						<tr ng-repeat="contact in contactlist">
+							<td>{{contact.name}}</td>
+							<td>{{contact.email}}</td>
+							<td>{{contact.number}}</td>
+						</tr>
+					</tbody>
 				</tr>
 			</thead>
 		</table>
