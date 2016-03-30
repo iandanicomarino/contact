@@ -22,6 +22,15 @@ app.get('/contactlist', function (req,res){
 	//res.json(contactlist);//send back data to controller as respond
 });
 
+app.post('/edituser/:id', function (req,res){
+	var id=req.params.id;
+	console.log(id);
+	db.contactlist.findOne({_id:mongojs.ObjectId(id)},function(err,docs){
+		console.log(docs);
+		res.json(docs);
+	});
+});
+
 app.post('/adduser',function (req,res){
 	
 	console.log(req.body);
@@ -31,10 +40,20 @@ app.post('/adduser',function (req,res){
 	});
 });
 
+app.post('/updateuser/:id',function (req,res){
+	
+	var id = req.params.id;
+	console.log(req.body);
+	db.contactlist.update({_id:mongojs.ObjectId(id)},req.body,{upsert:true});
+	db.contactlist.find(function (err,docs){
+		res.json(docs);
+	});
+});
+
 app.delete('/deleteuser/:id',function (req,res){
-	console.log(req.param.id);
+	console.log(req.params.id);
 	var id=req.params.id;
-	console.log(id);
+	//console.log(id);
 	db.contactlist.remove({_id:mongojs.ObjectId(id)});
 	db.contactlist.find(function (err,docs){
 		res.json(docs);
