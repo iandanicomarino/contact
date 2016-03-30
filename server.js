@@ -30,5 +30,15 @@ app.post('/adduser',function (req,res){
 		res.json(docs);
 	});
 });
+
+app.delete('/deleteuser/:id',function (req,res){
+	console.log(req.param.id);
+	var id=req.params.id;
+	console.log(id);
+	db.contactlist.remove({_id:mongojs.ObjectId(id)});
+	db.contactlist.find(function (err,docs){
+		res.json(docs);
+	});
+});
 app.listen(1234);
 console.log("server running");
