@@ -47,8 +47,8 @@ myApp.controller('AppCtrl',['$scope','$http', function($scope, $http){
 	};
 	$scope.update= function(id)
 	{
-		console.log($scope.contact.id);
-		$http.post('/updateuser/'+$scope.contact.id,$scope.contact).then(function(res){
+		console.log("contactid"+$scope.contact._id);
+		$http.post('/updateuser/'+$scope.contact._id,$scope.contact).then(function(res){
 
 			$scope.contactlist=res.data;
 		});
